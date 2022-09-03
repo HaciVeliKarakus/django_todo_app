@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-l col-sm-offset-3">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <br>
+                    <span class="input-group-btn">
+                         <button style="background-color: rgb(6, 50, 63);color:antiquewhite"
+                                 type="submit" class="btn btn-dark" id="add-btn">UPDATE TODO</button>
+                     </span>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

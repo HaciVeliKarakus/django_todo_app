@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-l col-sm-offset-3">
+                <a href="{% url 'todoAdd' %}">
+                    <button style="background-color:  rgb(150, 75, 121);color:antiquewhite" type="submit"
+                            class="btn btn-dark" id="add-btn"> ADD TODO
+                    </button>
+                </a>
+                <a href="{% url 'completed-delete' %}">
+                    <button style="background-color:  rgb(150, 75, 121);color:antiquewhite" type="submit"
+                            class="btn btn-dark" id="add-btn"> DELETE COMPLETED
+                    </button>
+                </a>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container-fluid">
+        {% for todo in todo_list %}
+            <div class="row">
+                <div class="col-md-1 col-xs-1 col-sm-1"></div>
+                <div class="col-md-7 col-xs-7 col-sm-7">
+                    <ul class="list-group">
+
+                        <li class="list-group-item ">
+                            <a href="{% url 'detail' todo.id %}">
+                                <label>
+							<span class="complete-">
+								{% if todo.completed %}
+                                    <del>{{ todo.title }}</del> (Completed)<br>
+                                {% else %}
+                                    {{ todo.title }}<br>
+                                {% endif %}
+							</span>
+
+                                </label>
+                            </a>
+                            <span class="badge"></span>
+                        </li>
+                    </ul>
+                    <br>
+                </div>
+                <div class="col-md-1 col-xs-1 col-sm-1">
+                    <a href="{% url 'complete' todo.id %}">
+                        <button style="background-color: rgb(45, 114, 108); color: antiquewhite;" type="button"
+                                class="btn btn-dark">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-1 col-xs-1 col-sm-1">
+                    <a href="{% url 'todo-edit' todo.id %}">
+                        <button style="background-color: rgb(58, 45, 114); color: antiquewhite; " type="button"
+                                class="btn btn-dark">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-1 col-xs-1 col-sm-1">
+                    <a href="{% url 'delete' todo.id %}">
+                        <button style="background-color: rgb(114, 45, 45); color: antiquewhite;" type="button"
+                                class="btn btn-dark">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-1 col-xs-1 col-sm-1"></div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
